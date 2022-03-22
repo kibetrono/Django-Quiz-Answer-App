@@ -1,0 +1,11 @@
+Hello {{user.username}},
+
+Kindly use the below link to activate your account.
+
+{{site.name}}/accounts/activate/{{activation_key}}
+
+The activation link will expire in {{expiration_days}}.Thank you.
+
+Regards,
+
+Accounts Team.
