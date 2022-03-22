@@ -1,0 +1,19 @@
+{% extends "neighbour_app/base2.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .form-text {
+        display: none !important;
+    }
+</style>
+<div class="container">
+<h1 class="text-center">Login Form</h1>
+    <form action="" method="POST">
+         {% csrf_token %}
+        {{ form|crispy}}
+        <input type="submit" class="btn btn-primary mt-4" value="Login">
+        <p class="h5 mt-4">Don't have an account? <a href="/accounts/register">Sign up</a></p>
+    </form>
+</div>
+
+{% endblock %}
