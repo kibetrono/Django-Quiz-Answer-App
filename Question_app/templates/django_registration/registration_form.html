@@ -1,0 +1,20 @@
+{% extends "Question_app/base2.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .form-text {
+        display: none !important;
+    }
+</style>
+<div class="container">
+<h1 class="text-center">Registration Form</h1>
+    <form action="/accounts/register/" method="POST">
+         {% csrf_token %}
+        {{ form|crispy}}
+        <input type="submit" class="btn btn-primary mt-3" value="Register">
+        <p class="h5 mt-4">Have an account? <a href="/accounts/login">Sign in</a></p>
+
+    </form>
+</div>
+
+{% endblock %}
