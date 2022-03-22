@@ -1,0 +1,19 @@
+{% extends "neighbour_app/base2.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="container">
+
+    
+    {%if activation_error.code=="already_activated"%}
+    <p class="text-danger">{{activation_error.message}}</p>
+    <p>Proceed to <a href="{% url 'login'%}">Login</a></p>
+    {%else%}
+    <p class="text-danger">{{activation_error.message}}</p>
+    {%endif%}
+
+</div>
+
+
+{% endblock %}
