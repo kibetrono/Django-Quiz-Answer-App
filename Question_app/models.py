@@ -40,4 +40,23 @@ class QuestionAnswer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    
+    class Meta:
+        ordering=['-updated_at','-created_at']
+
+    def save_question_answer(self):
+        self.save()
+
+    def update_question_answer(self,question,choice1,choice2,choice3,choice4,answer):
+        self.question=question
+        self.choice1=choice1
+        self.choice2=choice2
+        self.choice3=choice3
+        self.choice4=choice4
+        self.answer=answer
+        self.save()
+
+    def delete_question_answer(self):
+        self.delete()
+
+    def __str__(self):
+        return self.question
