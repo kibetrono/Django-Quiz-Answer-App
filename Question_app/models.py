@@ -29,3 +29,15 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.name
+
+class QuestionAnswer(models.Model):
+    question=models.CharField(max_length=250,null=True)
+    choice1=models.CharField(max_length=150,null=True)
+    choice2=models.CharField(max_length=150,null=True)
+    choice3=models.CharField(max_length=150,null=True)
+    choice4=models.CharField(max_length=150,null=True)
+    answer=models.CharField(max_length=150,null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    
