@@ -12,4 +12,20 @@ class Profile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-  
+    class Meta:
+        ordering=['-updated_at','-created_at']
+
+    def save_profile(self):
+        self.save()
+
+    def update_profile(self,name,email,profile_pic):
+        self.name=name
+        self.email=email
+        self.profile_pic=profile_pic
+        self.save()
+
+    def delete_Profile(self):
+        self.delete()
+
+    def __str__(self):
+        return self.name
