@@ -12,6 +12,7 @@ class QuestionTestClass(TestCase):
         choice3="choice3",choice4="choice4",answer="answer 1")
         self.question.save_question_answer()
       
+      
     def test_instance(self):
         self.assertTrue(isinstance(self.question, QuestionAnswer))
 
