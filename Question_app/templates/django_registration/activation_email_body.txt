@@ -8,4 +8,4 @@ The activation link will expire in {{expiration_days}}.Thank you.
 
 Regards,
 
-Accounts Team.
+David Rono.
