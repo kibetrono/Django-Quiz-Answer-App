@@ -2,16 +2,43 @@ import imp
 from multiprocessing import context
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .models import Profile
+from .models import Profile,QuestionAnswer
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 from django.contrib.auth.models import User
+from .forms import QuestionForm
+
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def index(request):
-    context={}
-    return render(request, 'Question_app/index.html',context)
+    if request.method == 'POST':
+        questions=QuestionAnswer.objects.all()
+        score=0
+        wrong=0
+        correct=0
+        total=0
+        for q in questions:
+            total+=1
+            print(request.POST.get(q.question))
+            print(q.answer)
+            print()
+            if q.answer ==  request.POST.get(q.question):
+                score+=1
+                correct+=1
+            else:
+                wrong+=1
+        percent = score/total *100
+        context = {'score':score,'time': request.POST.get('timer'),'correct':correct,'wrong':wrong,'percent':percent,'total':total}
+        return render(request,'Question_app/result.html',context)
+    else:
+        questions=QuestionAnswer.objects.all()
+        context = {
+            'questions':questions
+        }
+        return render(request, 'Question_app/index.html',context)
+
 
 @login_required(login_url='/accounts/login/')
 def my_profile(request):
@@ -60,3 +87,43 @@ def update_profile(request):
         return redirect("/profile")
     else:
         return render(request, "Question_app/profile.html")
+
+
+# def add_question(request):
+#     form=QuestionForm()
+#     if(request.method=='POST'):
+#         form_results=QuestionForm(request.POST)
+#         if form_results.is_valid():
+#             form_results.save()
+#             return redirect('/')
+#     context={'form':form}
+#     return render(request,'Question_app/add_question.html',context)
+
+ 
+def add_question(request): 
+
+    if request.user.is_staff:
+        form=QuestionForm()
+        if(request.method=='POST'):
+            form_results=QuestionForm(request.POST)
+            if form_results.is_valid():
+                form_results.save()
+                return redirect('/')
+        context={'form':form}
+        return render(request,'Question_app/add_question.html',context)
+    else: 
+        return redirect('home')
+
+@login_required(login_url="/accounts/login/")
+def search(request):
+    questions = QuestionAnswer.objects.all()
+    if 'query' in request.GET and request.GET["query"]:
+        search_term = request.GET.get("query")
+        searched_results = QuestionAnswer.objects.filter(question__icontains=search_term)
+        message = f"Search For: {search_term}"
+        context = {"message": message, "businesses": searched_results}
+        return render(request, "Question_app/search.html", context)
+    else:
+        message = "You haven't searched for any term"
+        context = {"message": message,'questions':questions}
+        return render(request, "Question_app/search.html", context)

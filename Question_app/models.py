@@ -58,5 +58,10 @@ class QuestionAnswer(models.Model):
     def delete_question_answer(self):
         self.delete()
 
+    @classmethod
+    def search_by_name(cls, search_term):
+        question = cls.objects.filter(question__icontains=search_term)
+        return question
+
     def __str__(self):
         return self.question

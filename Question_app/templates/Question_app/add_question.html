@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .form-text {
+        display: none !important;
+    }
+    .all{
+            font-family: 'Times New Roman', Times, serif;
+            border:1px solid #ddd;
+            border-radius:50px
+    }
+    .quiz_form{
+        padding: 20px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    .quiz_form input{
+        height:50px;
+        border-radius:20px
+
+    }
+    .quiz_form label{
+        font-size: 20px;
+        margin-top: 15px;
+
+    }
+    label{
+        color:white
+    }
+</style>
+<div class="container all mt-4">
+<h1 class="text-center text-secondary pt-4 text-white">New Question Form</h1>
+    <form class="quiz_form"  method="POST">
+         {% csrf_token %}
+        {{ form|crispy}}
+        <input type="submit" class="btn btn-secondary mt-3" value="Submit Question">
+
+    </form>
+</div>
+
+{% endblock %}
