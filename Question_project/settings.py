@@ -106,16 +106,6 @@ WSGI_APPLICATION = 'Question_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django_quiz_answer',
-        'USER': 'rono',
-        'PASSWORD': 'kibetrono',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
 
 
 # Password validation
