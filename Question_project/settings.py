@@ -176,6 +176,10 @@ EMAIL_HOST_USER ="david.rono@student.moringaschool.com"
 EMAIL_HOST_PASSWORD ="Moringa1996@"
 EMAIL_USE_TLS=True
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
