@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    p{
+   font-size:25px
+    }
+</style>
+<div class="container " style="">
+        
+    <div class="card-columns" style="padding: 10px; margin: 20px; ">
+        <div class="card " align="centre" style="width: 80%; border:5px black #ddd;box-shadow:5px 5px 5px #ddd;">
+             <img class="card-img-top" style="height: 30vh;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdUJ4Qq7t2jgj6JXx4u7BfL2bqMc2HVZqNgg&usqp=CAU" alt="Card image cap">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                         <h5 class="card-title">Score:
+                                <span class="badge badge rounded-pill bg-secondary"> {{score}}</span>
+                             </h5>
+                <p class="card-text">Percentage:
+                                        <span class="badge badge rounded-pill bg-secondary">{{percent}} %</span>
+                    </p>
+                <p class="card-text">
+                    Time Taken:
+                    <span class="badge badge rounded-pill bg-secondary">{{time}} seconds</span>
+                    </p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <p class="card-text">Correct answers:
+                               <span class="badge badge rounded-pill bg-secondary"> {{correct}}</span>
+</p>
+                <p class="card-text ">Incorrect answers:
+                     <span class="badge badge rounded-pill bg-secondary">{{wrong}}</span>
+                    </p>
+                <p class="card-text">Total answered questions:
+                        <span class="badge badge rounded-pill bg-secondary">{{total}}</span>
+                    </p>
+                    </div>
+
+                </div>
+
+
+                
+            </div>
+        </div>
+    </div>
+ 
+</div>
+<script>
+    if({{correct}} == 0){
+    alert("Failed.Put more effort in your work")
+    }else if({{correct}} == 1){
+    alert("Below average.You still have a room to improve")
+    }else if({{correct}} ==2 ){
+    alert('Fair Results')
+    }
+    else if({{correct}} ==3 ){
+    alert('Good Performances')
+    }else{
+    alert("Excellent Performance.Keep it up")
+    }
+</script>
+{% endblock %}
